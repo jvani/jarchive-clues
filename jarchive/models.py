@@ -32,7 +32,7 @@ class Game(BaseModel):
     @classmethod
     def parse_get_or_create(cls, tr, crawled=None):
         return cls.get_or_create(
-            url=tr.xpath('.//a/@href').get(),
+            url=tr.xpath('.//a/@href').get("").replace("https://", "http://"),
             defaults={
                 "season": tr.xpath('normalize-space(//h2[@class="season"])').get(),
                 "description": tr.xpath('normalize-space(td[1])').get(),
@@ -69,7 +69,7 @@ class Question(BaseModel):
                 index = int(td.xpath('.//*[@class="clue_text"]/@id').re_first(r'(\d+)_\d+')) - 1
             mouseover = cls.parse_mouseover(td)
             return cls.create(
-                url=url,
+                url=url.replace("https://", "http://"),
                 identifier=td.xpath('.//*[@class="clue_text"]/@id').get(),
                 order=int(td.xpath('normalize-space(.//*[@class="clue_order_number"])').re_first(r'(\d+)', 0)) or None,
                 value=int(td.xpath('.//*[@class="clue_value"]').re_first(r'(\d+)', 0)) or None,
