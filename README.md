@@ -1,6 +1,5 @@
 <h1 align="center" style="border-bottom: none;">jarchive-clues</h1>
 <p align="center">
-  <img src=https://img.badgesize.io/jvani/jarchive-clues/main/jarchive.db?label=Database%20Size />
   <img src=https://github.com/jvani/jarchive-clues/workflows/Database%20Update/badge.svg />
 </p>
 
